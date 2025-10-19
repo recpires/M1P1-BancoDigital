@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("M1P1-BancoDigital")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+644dfe9c3420eccc008d3861bd5830528a8ac61f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+71d47d180e806158580e14734c8b93b4d1844f77")]
 [assembly: System.Reflection.AssemblyProductAttribute("M1P1-BancoDigital")]
 [assembly: System.Reflection.AssemblyTitleAttribute("M1P1-BancoDigital")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
