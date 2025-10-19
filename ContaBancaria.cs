@@ -3,64 +3,62 @@ using System;
 
 public class ContaBancaria
 {
-    // --- 1. PROPRIEDADES (Agora "Encapsuladas") ---
+    // --- 1. PROPRIEDADES (O Jeito C#) ---
 
-    // Estes são os "campos" (fields) privados.
-    // Ninguém de fora pode vê-los ou alterá-los diretamente.
-    private string _nomeTitular;
-    private int _numeroConta;
-    private decimal _saldo;
+    // Propriedade Automática para o Nome.
+    // get; (público) -> Todos podem ler.
+    // private set; -> Só a classe pode alterar (no construtor).
+    public string NomeTitular { get; private set; }
+
+    // Propriedade Automática para o Número da Conta.
+    public int NumeroConta { get; private set; }
+
+    // Propriedade "Full" para o Saldo.
+    private decimal _saldo; // O campo privado que armazena o dado
+    
+    public decimal Saldo // A propriedade pública que expõe o dado
+    {
+        get { return _saldo; }
+        // Como não definimos um "set", esta propriedade é SÓ DE LEITURA (ReadOnly)
+        // para o mundo exterior. Perfeito!
+    }
+
 
     // --- 2. CONSTRUTOR ---
-    // Este método é chamado automaticamente no "new"
-    // Ele FORÇA a criação de uma conta já com dados válidos.
+    // O construtor agora usa as Propriedades para definir os valores
     public ContaBancaria(string nomeTitular, int numeroConta, decimal saldoInicial)
     {
-        _nomeTitular = nomeTitular;
-        _numeroConta = numeroConta;
+        // "NomeTitular" aqui está a chamar o "set" privado da Propriedade
+        NomeTitular = nomeTitular; 
+        NumeroConta = numeroConta;
         
-        // NÃO fazemos "_saldo = saldoInicial;"
-        // Usamos nosso próprio método Depositar para validar o saldo inicial!
+        // _saldo é o único que ainda alteramos diretamente,
+        // pois a lógica de depósito valida o valor.
+        _saldo = 0; // Inicia zerado antes do depósito inicial
         Depositar(saldoInicial); 
     }
 
-    // --- 3. MÉTODOS "GETTERS" (Para ler dados privados) ---
 
-    // Método público para "ler" o nome (que é privado)
-    public string GetNomeTitular()
-    {
-        return _nomeTitular;
-    }
-    
-    // Método público para "ler" o saldo (que é privado)
-    public decimal GetSaldo()
-    {
-        return _saldo;
-    }
+    // --- 3. MÉTODOS DE AÇÃO (Não mudam muito) ---
 
-    // --- 4. MÉTODOS DE AÇÃO (Os "Portões" de entrada/saída) ---
-
-    // Método para sacar.
     public void Sacar(decimal valorSaque)
     {
         if (valorSaque <= 0)
         {
             Console.WriteLine("Valor de saque inválido.");
         }
-        else if (valorSaque > _saldo) // Agora usamos a variável privada
+        else if (valorSaque > _saldo) // Acede ao campo privado
         {
             Console.WriteLine("Saldo insuficiente.");
         }
         else
         {
-            // O _saldo SÓ é alterado aqui dentro.
-            _saldo = _saldo - valorSaque; 
+            _saldo = _saldo - valorSaque; // Altera o campo privado
             Console.WriteLine("Saque realizado com sucesso!");
-            Console.WriteLine($"Seu novo saldo é: {_saldo:C}");
+            Console.WriteLine($"Seu novo saldo é: {Saldo:C}"); // Lê a Propriedade pública
         }
     }
 
-    // Método para depositar
     public void Depositar(decimal valorDeposito)
     {
         if (valorDeposito <= 0)
@@ -71,13 +69,13 @@ public class ContaBancaria
         {
             _saldo = _saldo + valorDeposito;
             Console.WriteLine($"Depósito de {valorDeposito:C} realizado.");
-            Console.WriteLine($"Seu novo saldo é: {_saldo:C}");
+            Console.WriteLine($"Seu novo saldo é: {Saldo:C}");
         }
     }
 
-    // VerSaldo agora usa o Getter
     public void VerSaldo()
     {
-        Console.WriteLine($"Saldo de {_nomeTitular}: {GetSaldo():C}");
+        // Agora usamos a Propriedade "Saldo", que chama o "get"
+        Console.WriteLine($"Saldo de {NomeTitular}: {Saldo:C}");
     }
 }

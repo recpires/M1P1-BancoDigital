@@ -5,22 +5,18 @@ class Program
 {
     static void Main(string[] args)
     {
-        // --- CRIAÇÃO DO OBJETO (Agora via Construtor) ---
-        // Somos OBRIGADOS a passar os dados iniciais.
-        // O objeto já "nasce" pronto.
         ContaBancaria contaDoRodrigo = new ContaBancaria(
             nomeTitular: "Rodrigo Pires", 
             numeroConta: 1234, 
             saldoInicial: 1500.75m
         );
 
-        // --- TENTE ISSO E VEJA O ERRO! ---
-        // contaDoRodrigo._saldo = 99999; // ERRO! '_saldo' is inaccessible due to its protection level
-        // Console.WriteLine(contaDoRodrigo._nomeTitular); // ERRO!
-        // Nosso encapsulamento funcionou!
-
-        // --- O JEITO CORRETO DE LER O DADO ---
-        Console.WriteLine($"--- Bem-vindo ao Banco Digital, {contaDoRodrigo.GetNomeTitular()} ---");
+        // --- MUDANÇA PRINCIPAL ---
+        // Antes: contaDoRodrigo.GetNomeTitular()
+        // Agora: contaDoRodrigo.NomeTitular
+        // (Parece um campo, mas está a chamar o "get" da propriedade!)
+        Console.WriteLine($"--- Bem-vindo ao Banco Digital, {contaDoRodrigo.NomeTitular} ---");
+        Console.WriteLine($"Conta N.º: {contaDoRodrigo.NumeroConta}");
 
         bool continuar = true;
         while (continuar)
