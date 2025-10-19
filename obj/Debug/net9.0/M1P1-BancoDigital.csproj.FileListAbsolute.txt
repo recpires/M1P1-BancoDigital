@@ -12,3 +12,4 @@ C:\Users\Rodrigo\Desktop\M1P1-BancoDigital\obj\Debug\net9.0\refint\M1P1-BancoDig
 C:\Users\Rodrigo\Desktop\M1P1-BancoDigital\obj\Debug\net9.0\M1P1-BancoDigital.pdb
 C:\Users\Rodrigo\Desktop\M1P1-BancoDigital\obj\Debug\net9.0\M1P1-BancoDigital.genruntimeconfig.cache
 C:\Users\Rodrigo\Desktop\M1P1-BancoDigital\obj\Debug\net9.0\ref\M1P1-BancoDigital.dll
+C:\Users\Rodrigo\Desktop\M1P1-BancoDigital\obj\Debug\net9.0\M1P1-BancoDigital.sourcelink.json
