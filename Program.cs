@@ -1,34 +1,55 @@
-﻿using System; // Precisamos disso para usar o "Console"
+﻿using System; 
 
 class Program
 {
     static void Main(string[] args)
     {
         // --- 1. DECLARANDO VARIÁVEIS ---
-        // Vamos guardar os dados de um cliente e sua conta
-
         string nomeCliente = "Rodrigo Pires";
-        string cpfCliente = "123.456.789-00";
-        int idadeCliente = 35; // Exemplo de int
-        decimal saldoAtual = 1500.75m; // O 'm' indica que é um tipo "decimal"
-        bool clienteAtivo = true; // Exemplo de bool
+        decimal saldoAtual = 1500.75m;
 
-        // --- 2. EXIBINDO OS DADOS (Concatenação e Interpolação) ---
+        Console.WriteLine($"--- Bem-vindo ao Banco Digital, {nomeCliente} ---");
+        Console.WriteLine($"Seu saldo atual é: {saldoAtual:C}");
+        Console.WriteLine("--------------------------------------");
         
-        // Forma 1: Concatenação (estilo antigo)
-        Console.WriteLine("--- Ficha do Cliente (Concatenação) ---");
-        Console.WriteLine("Nome: " + nomeCliente);
-        Console.WriteLine("Saldo: " + saldoAtual);
-        Console.WriteLine("--------------------------------------");
-        Console.WriteLine(); // Linha em branco
+        // --- 2. CAPTURANDO INPUT DO USUÁRIO ---
+        // Console.ReadLine() captura o que o usuário digita (sempre como string)
+        Console.Write("Digite o valor do saque: "); // Write (sem Line) não pula linha
+        string valorSaqueString = Console.ReadLine();
 
-        // Forma 2: Interpolação (muito melhor e mais moderna!)
-        // Use o $ antes das aspas.
-        Console.WriteLine("--- Ficha do Cliente (Interpolação) ---");
-        Console.WriteLine($"Nome do Cliente: {nomeCliente}");
-        Console.WriteLine($"CPF: {cpfCliente} | Idade: {idadeCliente}");
-        Console.WriteLine($"Saldo Atual: {saldoAtual:C}"); // O ":C" formata como moeda!
-        Console.WriteLine($"Cliente está Ativo? {clienteAtivo}");
-        Console.WriteLine("--------------------------------------");
+        // Precisamos converter a string para decimal
+        // decimal.Parse() tenta "ler" o texto e transformar em número
+        decimal valorSaque = decimal.Parse(valorSaqueString);
+        
+        // --- 3. ESTRUTURA DE DECISÃO (if/else) ---
+
+        // Operadores de Comparação:
+        // >  (Maior que)
+        // >= (Maior ou igual a)
+        // <  (Menor que)
+        // <= (Menor ou igual a)
+        // == (Igual a)
+        // != (Diferente de)
+
+        if (valorSaque <= 0)
+        {
+            Console.WriteLine("Valor de saque inválido. Tente novamente.");
+        }
+        else if (valorSaque > saldoAtual)
+        {
+            Console.WriteLine("Saldo insuficiente para este saque.");
+            Console.WriteLine($"Seu saldo é: {saldoAtual:C}");
+        }
+        else
+        {
+            // Se chegou aqui, o saque é válido
+            // Operadores Matemáticos: +, -, *, /
+            saldoAtual = saldoAtual - valorSaque; // ou saldoAtual -= valorSaque;
+
+            Console.WriteLine("Saque realizado com sucesso!");
+            Console.WriteLine($"Seu novo saldo é: {saldoAtual:C}");
+        }
+
+        Console.WriteLine("--- Obrigado por usar nosso banco! ---");
     }
 }
